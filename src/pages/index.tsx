@@ -90,9 +90,9 @@ const Home: React.FC = () => {
             {!loading ? (
               <button
                 type="submit"
-                className="cursor-pointer bg-gradient-to-r from-pink-700 to-purple-800 text-white text-2xl font-bold text-center py-2 px-5 mb-5"
+                className="mt-2 cursor-pointer bg-gradient-to-r from-pink-700 to-purple-800 text-white text-2xl font-bold text-center py-2 px-5 mb-5"
               >
-                Pesquisar
+                Veja qual foi
               </button>
             ) : (
               <Image
@@ -120,7 +120,7 @@ const Home: React.FC = () => {
                 alt="movie poster"
               />
             )}
-            <h2 className="text-center text-6xl text-pink-200 text-bold">
+            <h2 className="text-center text-6xl text-purple-800 text-bold">
               {movie.title}
             </h2>
             <h4 className="text-center text-2xl text-indigo-800">
@@ -142,7 +142,7 @@ const Home: React.FC = () => {
                 <h5 className="text-center text-2xl text-purple-800">
                   Sinopse:
                 </h5>
-                <p className="text-center text-white text-2xl w-3/6 mx-auto">
+                <p className="text-center text-white text-2xl mx-auto max-w-2xl">
                   {movie.overview}
                 </p>
               </>
@@ -172,6 +172,14 @@ const Home: React.FC = () => {
             >
               <WhatsappIcon size={32} round />
             </WhatsappShareButton>
+
+            <button
+              onClick={() => setMovie(undefined)}
+              type="button"
+              className="block mx-auto mt-5 cursor-pointer bg-gradient-to-r from-pink-700 to-purple-800 text-white text-2xl font-bold text-center py-2 px-5 mb-5"
+            >
+              Pesquisar novamente
+            </button>
           </motion.div>
         )}
 
