@@ -1,6 +1,5 @@
 import React, { FormEvent, useState } from 'react';
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
 
 const Home: React.FC = () => {
   const [date, setDate] = useState('1993-01-01');
@@ -16,31 +15,40 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className=" bg-blue-200 min-h-screen flex flex-col justify-center items-center px-2">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <form onSubmit={handleSubmit}>
+      <main className="py-5 flex flex-1 flex-col justify-center items-center">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col justify-center items-center"
+        >
           <label htmlFor="birthdate">
             Data de nascimento
             <input
               id="birthdate"
+              className="block mt-1 mb-1"
               value={date}
               onChange={(e) => setDate(e.target.value)}
               type="date"
               name="birthdate"
             />
           </label>
-          <button type="submit">Pesquisar</button>
+          <button
+            type="submit"
+            className="cursor-pointer bg-black text-white text-sm font-bold text-center py-2 px-5"
+          >
+            Pesquisar
+          </button>
         </form>
 
-        {movie === '' && <div className={styles.result} />}
+        {movie === '' && <div className="text-center" />}
 
         {movie && (
-          <div className={styles.result}>
+          <div className="text-center">
             <h2>{movie}</h2>
             <h4>
               Foi o filme que passou na sessão da tarde no dia do seu
@@ -50,7 +58,7 @@ const Home: React.FC = () => {
         )}
 
         {movie === null && (
-          <div className={styles.result}>
+          <div className="text-center">
             <h2>Não teve sessão da tarde neste dia!</h2>
             <h4>
               Infelizmente você nasceu em um dia em que a Sessão da Tarde não
@@ -60,14 +68,15 @@ const Home: React.FC = () => {
         )}
       </main>
 
-      <footer className={styles.footer}>
+      <footer className="w-full h-24 flex justify-center items-center border-t border-solid border-gray-200">
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
+          className="flex justify-center items-center"
         >
           Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
+          <img src="/vercel.svg" alt="Vercel Logo" className="ml-1 h-4" />
         </a>
       </footer>
     </div>
