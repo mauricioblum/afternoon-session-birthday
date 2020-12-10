@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import movieDb from '../../db.json';
+import movieDb from '../../db/db.json';
 
 interface MovieDb {
   [year: number]: {

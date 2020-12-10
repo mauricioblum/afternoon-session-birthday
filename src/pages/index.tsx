@@ -1,5 +1,6 @@
 import React, { FormEvent, useState } from 'react';
 import Head from 'next/head';
+import Image from 'next/image';
 
 const Home: React.FC = () => {
   const [date, setDate] = useState('1993-01-01');
@@ -27,11 +28,12 @@ const Home: React.FC = () => {
       </Head>
 
       <main className="py-5 flex flex-1 flex-col justify-center items-center">
-        <img
-          src="https://static.wikia.nocookie.net/logopedia/images/3/3d/Sess%C3%A3o_da_tarde_globo_logo_2005.png"
+        <Image
+          src="/assets/images/sessao-tarde-img.jpg"
           alt="sessão da tarde"
           className="mb-10"
-          width="400"
+          width={400}
+          height={226}
         />
         <h1 className="text-center text-white text-4xl font-bold mb-8">
           Qual foi o filme que passou na Sessão da Tarde no dia do seu
