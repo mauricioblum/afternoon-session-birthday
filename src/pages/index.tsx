@@ -2,9 +2,17 @@ import React, { FormEvent, useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 
+interface MovieData {
+  title: string;
+  overview?: string;
+  imageUrl?: string;
+  releaseDate?: string;
+  empty?: boolean;
+}
+
 const Home: React.FC = () => {
   const [date, setDate] = useState('1993-01-01');
-  const [movie, setMovie] = useState('');
+  const [movie, setMovie] = useState<MovieData | undefined>();
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     console.log('date', date);
@@ -29,7 +37,7 @@ const Home: React.FC = () => {
 
       <main className="py-5 flex flex-1 flex-col justify-center items-center">
         <Image
-          src="/assets/images/sessao-tarde-img.jpg"
+          src="/assets/images/logo-sessao-tarde.png"
           alt="sessão da tarde"
           className="mb-10"
           width={400}
@@ -63,22 +71,50 @@ const Home: React.FC = () => {
           </button>
         </form>
 
-        {movie === '' && <div className="text-center h-32" />}
+        {!movie && <div className="text-center" />}
 
-        {movie && (
-          <div className="text-center h-32">
+        {movie && !movie.empty && (
+          <div className="text-center">
+            {movie.imageUrl && (
+              <Image
+                src={movie.imageUrl}
+                width={150}
+                height={200}
+                alt="movie poster"
+              />
+            )}
             <h2 className="text-center text-6xl text-pink-200 text-bold">
-              {movie}
+              {movie.title}
             </h2>
             <h4 className="text-center text-2xl text-indigo-800">
               Foi o filme que passou na sessão da tarde no dia do seu
               nascimento.
             </h4>
+            {movie.releaseDate && (
+              <>
+                <h5 className="text-center text-2xl text-purple-800">
+                  Ano de lançamento:{' '}
+                  <span className="text-white text-bold">
+                    {movie.releaseDate.slice(0, 4)}
+                  </span>
+                </h5>
+              </>
+            )}
+            {movie.overview && (
+              <>
+                <h5 className="text-center text-2xl text-purple-800">
+                  Sinopse:
+                </h5>
+                <p className="text-center text-white text-2xl w-3/6 mx-auto">
+                  {movie.overview}
+                </p>
+              </>
+            )}
           </div>
         )}
 
-        {movie === null && (
-          <div className="text-center h-32">
+        {movie?.empty && (
+          <div className="text-center">
             <h2 className="text-center text-6xl text-pink-200 text-bold">
               Não teve sessão da tarde neste dia!
             </h2>
