@@ -55,7 +55,9 @@ export default async (
           overview,
           title: movie,
           releaseDate: release_date,
-          imageUrl: `https://image.tmdb.org/t/p/w500${poster_path}`,
+          imageUrl: poster_path
+            ? `https://image.tmdb.org/t/p/w500${poster_path}`
+            : 'https://via.placeholder.com/500x650.png?text=Capa+Inexistente',
         };
       }
 
